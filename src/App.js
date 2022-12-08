@@ -1,21 +1,33 @@
 import styled from "styled-components";
-import MoviesList from "./components/MoviesList";
+import MoviesList from "./components/MoviesListPage";
 import GlobalStyle from "./GlobalStyle";
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Sessions from "./components/SessionsPage"
+// import Seats from "./components/SeatsPage"
 
 
 function App() {
   return (
     <>
-    <GlobalStyle/>
-    <LogoStyle>CINEFLEX</LogoStyle>
-    <MoviesList/>
+      <BrowserRouter>
+        <GlobalStyle />
+
+        <Header>CINEFLEX</Header>
+
+        <Routes>
+          <Route path="/" element={<MoviesList />} />
+          <Route path="/sessoes" element={<Sessions />} />
+          {/* <Route path="/assentos" element={<Seats />} /> */}
+        </Routes>
+
+      </BrowserRouter>
     </>
   );
 }
 
 export default App;
 
-const LogoStyle = styled.div`
+const Header = styled.div`
 position: absolute;
 width: 100%;
 height: 67px;

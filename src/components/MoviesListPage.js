@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import {Link} from "react-router-dom"
 
 export default function MoviesList() {
     const [movies, setMovies] = React.useState([])
@@ -13,14 +14,16 @@ export default function MoviesList() {
 
     return (
         <>
-        <Text>Selecione o filme</Text>
-        <PosterContainer>
-        {movies.map((m)=>(
-            <Poster key={m.id}>
-            <img src={m.posterURL} alt={m.title}/>
-            </Poster>
-        ))}
-        </PosterContainer>
+            <Text>Selecione o filme</Text>
+            <PosterContainer>
+                {movies.map((m) => (
+                    <Link to ="/sessoes">
+                        <Poster key={m.id}>
+                            <img src={m.posterURL} alt={m.title} />
+                        </Poster>
+                    </Link>
+                ))}
+            </PosterContainer>
         </>
     )
 }
@@ -36,18 +39,21 @@ display: flex;
 align-items: center;
 justify-content: center;
 `
-const PosterContainer = styled.div `
+const PosterContainer = styled.div`
 display: flex;
 flex-wrap: wrap;
-gap:45px;
+gap:35px;
 margin-left: 38px;
 `
 
-const Poster =styled.div`
+const Poster = styled.div`
 box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.1);
 border-radius: 3px;
 width: 145px;
 height: 209px;
+display: flex;
+align-items: center;
+justify-content: center;
 img{
     width: 129px;
     height: 193px;
