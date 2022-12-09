@@ -1,14 +1,16 @@
 import styled from "styled-components"
 import axios from "axios"
 import React, { useEffect } from "react"
-import { Link } from "react-router-dom"
+import { Link, useParams} from "react-router-dom"
 
 export default function Sessions() {
     const [movieSessions, setMovieSessions] = React.useState([])
     const [moviesDays, setMoviesDays] = React.useState([])
+    const {movieID} = useParams()
+    
 
     useEffect(() => {
-        const URL = `https://mock-api.driven.com.br/api/v8/cineflex/movies/${1}/showtimes`
+        const URL = `https://mock-api.driven.com.br/api/v8/cineflex/movies/${movieID}/showtimes`
         const promise = axios.get(URL)
         promise.then(res => setMovieSessions(res.data))
         promise.then(res => setMoviesDays(res.data.days))
@@ -18,12 +20,15 @@ export default function Sessions() {
         <>
             <Text>Selecione o horário</Text>
             <DaysContainer>
-                {/* <Link to="/assentos"> */}
-                    {moviesDays.map((s) => <Day key={s.id}>{s.weekday} - {s.date}
-                        <div>
-                            {s.showtimes.map((times) => <Time key={times.id}> {times.name} </Time>)}
-                        </div> </Day>)}
-                {/* </Link> */}
+                {moviesDays.map((s) => <Day key={s.id}>{s.weekday} - {s.date}
+                    <div>
+                        {s.showtimes.map((times) =>
+                            <Link key={times.id} to={`/assentos/${times.id}`}>
+                                <Time> {times.name} </Time>
+                            </Link>)}
+
+                    </div> </Day>)}
+
             </DaysContainer>
             <Movie>
                 <div><img src={movieSessions.posterURL} /></div>

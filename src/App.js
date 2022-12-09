@@ -3,7 +3,7 @@ import MoviesList from "./components/MoviesListPage";
 import GlobalStyle from "./GlobalStyle";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Sessions from "./components/SessionsPage"
-// import Seats from "./components/SeatsPage"
+import Seats from "./components/SeatsPage"
 
 
 function App() {
@@ -16,8 +16,8 @@ function App() {
 
         <Routes>
           <Route path="/" element={<MoviesList />} />
-          <Route path="/sessoes" element={<Sessions />} />
-          {/* <Route path="/assentos" element={<Seats />} /> */}
+          <Route path="/sessoes/:movieID" element={<Sessions />} />
+          <Route path="/assentos/:sessionID" element={<Seats />} />
         </Routes>
 
       </BrowserRouter>

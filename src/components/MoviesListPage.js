@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 export default function MoviesList() {
     const [movies, setMovies] = React.useState([])
@@ -17,7 +17,7 @@ export default function MoviesList() {
             <Text>Selecione o filme</Text>
             <PosterContainer>
                 {movies.map((m) => (
-                    <Link to ="/sessoes">
+                    <Link to={`/sessoes/${m.id}`}>
                         <Poster key={m.id}>
                             <img src={m.posterURL} alt={m.title} />
                         </Poster>
