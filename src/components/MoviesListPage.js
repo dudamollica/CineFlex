@@ -17,8 +17,8 @@ export default function MoviesList() {
             <Text>Selecione o filme</Text>
             <PosterContainer>
                 {movies.map((m) => (
-                    <Link to={`/sessoes/${m.id}`}>
-                        <Poster key={m.id}>
+                    <Link key={m.id} to={`/sessoes/${m.id}`}>
+                        <Poster>
                             <img src={m.posterURL} alt={m.title} />
                         </Poster>
                     </Link>
@@ -42,8 +42,8 @@ justify-content: center;
 const PosterContainer = styled.div`
 display: flex;
 flex-wrap: wrap;
-gap:35px;
-margin-left: 38px;
+gap:30px;
+margin-left: 25px;
 `
 
 const Poster = styled.div`

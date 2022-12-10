@@ -5,7 +5,8 @@ import { Link, useParams } from "react-router-dom"
 
 export default function Seats() {
     const [seatsMovie, setSeatsMovie] = React.useState([])
-    const {sessionID} = useParams()
+    const { sessionID } = useParams()
+
 
     useEffect(() => {
         const URL = `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${sessionID}/seats`
@@ -18,8 +19,8 @@ export default function Seats() {
         <>
             <Text>Selecione o(s) assento(s)</Text>
             <SeatsContainer>
-                {seatsMovie.map((s) => <SeatStyle key={s.id} isAvailable={s.isAvailable} >
-                    {s.name} </SeatStyle>)}
+                {seatsMovie.map((s) =>
+                    <Seat key={s.id} isAvailable={s.isAvailable} name={s.name} />)}
             </SeatsContainer>
             <ColorKeys>
                 <div>
@@ -39,11 +40,34 @@ export default function Seats() {
     )
 }
 
+function Seat(props) {
+    const { isAvailable, name } = props
+    const [selected, setSelected] = React.useState(false)
+
+    function selectedSeat(){
+        if(isAvailable){
+        if(!selected){
+        setSelected(true)
+    } else {
+        setSelected(false)
+    }
+    } else {
+        alert("Esse assento não está disponível")
+    }
+
+}
+
+    return (
+        <SeatStyle isAvailable={isAvailable} onClick={selectedSeat} selected={selected}>
+            {name}
+        </SeatStyle>)
+}
+
 const ColorKeys = styled.div`
 display: flex;
 width: 100%;
 justify-content: center;
-gap:70px;
+gap:60px;
 div{
     display: flex;
     flex-direction: column;
@@ -64,20 +88,42 @@ const SeatsContainer = styled.div`
 display: flex;
 flex-wrap: wrap;
 margin-left: 11px;
+width:100%;
 `
 
 const SeatStyle = styled.div`
 width: 26px;
 height: 26px;
-background: ${props => props.isAvailable ? "#C3CFD9" : "#FBE192"};
+background: ${props => { 
+    if (props.selected){
+     return "#1AAE9E" 
+    }
+    if (props.isAvailable){
+        return "#C3CFD9"
+     }
+     else {
+     return "#FBE192"}
+    }}; 
 border: 1px solid;
-border-color: ${props => props.isAvailable ? "#808F9D" : "#F7C52B"};
+border-color: ${props => {
+    if (props.selected){
+     return "#0E7D71" 
+    }
+    if (props.isAvailable){
+        return "#7B8B99"
+     }
+     else {
+     return "#F7C52B"}
+    }}  ;
 border-radius: 12px;
 margin-left: 20px;
 margin-bottom: 34px;
 display: flex;
 align-items: center;
 justify-content: center;
+&:hover{
+    cursor: pointer;
+}
 `
 
 const Text = styled.div`
