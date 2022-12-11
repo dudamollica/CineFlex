@@ -45,7 +45,7 @@ table {
     border-spacing: 0;
 }
 
-div,span,h1,p{
+div,span,h1,p, h2, input, label{
     font-family: "roboto";
 }
 `

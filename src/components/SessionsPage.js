@@ -2,6 +2,7 @@ import styled from "styled-components"
 import axios from "axios"
 import React, { useEffect } from "react"
 import { Link, useParams} from "react-router-dom"
+import Footer from "./Footer"
 
 export default function Sessions() {
     const [movieSessions, setMovieSessions] = React.useState([])
@@ -30,43 +31,10 @@ export default function Sessions() {
                     </div> </Day>)}
 
             </DaysContainer>
-            <Movie>
-                <div><img src={movieSessions.posterURL} /></div>
-                {movieSessions.title}
-            </Movie>
+            <Footer img={movieSessions.posterURL} title={movieSessions.title}/>
         </>
     )
 }
-
-const Movie = styled.div`
-position: fixed;
-width: 100%;
-height: 117px;
-left: 0px;
-bottom: 0px;
-background: #DFE6ED;
-border: 1px solid #9EADBA;
-display: flex;
-align-items: center;
-color: #293845;
-font-size:26px;
-div{
-    width: 64px;
-    height: 89px;
-    background: #FFFFFF;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    border-radius: 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 18px;
-    margin-right: 18px;
-}
-img{
-    width: 48px;
-    height: 72px;
-}
-`
 
 const DaysContainer = styled.div`
 margin-bottom: 125px;
