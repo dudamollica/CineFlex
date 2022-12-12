@@ -39,7 +39,7 @@ export default function Form({name, setName, cpf, setCpf, seatsList }) {
 }
 
 const InputStyle = styled.div`
-margin-left:64px;
+margin-left:20px;
 label{
     margin-bottom: 5px;
     color: #293845;

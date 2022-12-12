@@ -64,8 +64,7 @@ border-color: ${props => {
         }
     }}  ;
 border-radius: 12px;
-margin-left: 20px;
-margin-bottom: 34px;
+margin-bottom: 17px; 
 display: flex;
 align-items: center;
 justify-content: center;

@@ -25,8 +25,8 @@ export default function Seats(props) {
             <Text>Selecione o(s) assento(s)</Text>
 
             <SeatsContainer>
-                {seatsMovie.map((s) => <Seat key={s.id} id={s.id} isAvailable={s.isAvailable} name={s.name}
-                    seatsList={seatsList} setSeatsList={setSeatsList} seatsNumbers={seatsNumbers} setSeatsNumbers={setSeatsNumbers}/>)}
+              <span> {seatsMovie.map((s) => <Seat key={s.id} id={s.id} isAvailable={s.isAvailable} name={s.name}
+                    seatsList={seatsList} setSeatsList={setSeatsList} seatsNumbers={seatsNumbers} setSeatsNumbers={setSeatsNumbers}/>)} </span> 
             </SeatsContainer>
 
             <ColorKeys>
@@ -50,9 +50,11 @@ margin-bottom: 150px;
 const ColorKeys = styled.div`
 display: flex;
 width: 100%;
-justify-content: center;
-gap:60px;
+justify-content: space-between;
+padding-left: 5px;
+padding-right: 5px;
 margin-bottom: 40px;
+box-sizing: border-box;
 div{
     display: flex;
     flex-direction: column;
@@ -66,13 +68,24 @@ background: ${props => props.background};
 border: 1px solid ${props => props.border};
 border-radius: 17px;
 margin-bottom: 20px;
+margin-top:20px;
 `
 
 const SeatsContainer = styled.div`
+width:100%;
+display:flex;
+align-items: center;
+justify-content: center;
+span{
 display: flex;
 flex-wrap: wrap;
-margin-left: 11px;
 width:100%;
+box-sizing: border-box;
+width: 350px;
+gap:7px;
+justify-content: space-between;
+align-items: space-between;
+}
 `
 const Text = styled.div`
 margin-top: 67px;

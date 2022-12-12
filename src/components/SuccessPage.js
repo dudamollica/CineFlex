@@ -46,13 +46,14 @@ width:100%;
 display:flex;
 align-items: center;
 justify-content: center;
+margin-top:50px;
 button{
     background: #E8833A;
     border-radius: 3px;
     border-color:#E8833A;
     width: 225px;
     height: 42px;
-    font-weight: 400;
+    font-weight: 400px;
     font-size: 18px;
     color: #FFFFFF;
 }
