@@ -15,7 +15,6 @@ function App() {
   const [movie, setMovie] = React.useState([])
   const [hour, setHour] = React.useState([])
   const [seatsNumbers, setSeatsNumbers] = React.useState("")
-  // console.log(seatsNumbers)
 
   return (
     <>
@@ -38,12 +37,14 @@ function App() {
               seatsNumbers={seatsNumbers} setSeatsNumbers={setSeatsNumbers} />} />
           <Route path="/sucesso" element={
             <Success
-              name={name}
-              cpf={cpf}
+              name={name} setName={setName}
+              cpf={cpf} setCpf={setCpf}
               seatsNumbers={seatsNumbers}
               date={date}
               movie={movie}
-              hour={hour} />} />
+              hour={hour}  
+              setSeatsNumbers={setSeatsNumbers}
+              setSeatsList={setSeatsList}/>} />
         </Routes>
 
       </BrowserRouter>

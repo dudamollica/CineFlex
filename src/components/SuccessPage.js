@@ -2,8 +2,14 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 
 export default function Success(props) {
-    const { name, cpf, seatsNumbers, date, movie, hour } = props
-    console.log(props)
+    const { name, cpf, seatsNumbers, date, movie, hour, setName, setCpf, setSeatsNumbers, setSeatsList} = props
+
+    function reset(){
+        setName("")
+        setCpf("")
+        setSeatsNumbers([])
+        setSeatsList([])
+    }
 
     return (
         <SuccessStyle>
@@ -28,7 +34,7 @@ export default function Success(props) {
             </MovieSessionStyle>
 
             <ButtonHomeStyle>
-                <Link to="/"> <button data-test="go-home-btn">Voltar para Home</button> </Link>
+                <Link to="/"> <button onClick={reset} data-test="go-home-btn">Voltar para Home</button> </Link>
             </ButtonHomeStyle>
 
         </SuccessStyle>
