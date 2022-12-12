@@ -17,11 +17,12 @@ export default function MoviesList() {
             <Text>Selecione o filme</Text>
             <PosterContainer>
                 {movies.map((m) => (
-                    <Link key={m.id} to={`/sessoes/${m.id}`}>
-                        <Poster>
+                    <Poster data-test="movie" key={m.id}>
+                        <Link to={`/sessoes/${m.id}`}>
                             <img src={m.posterURL} alt={m.title} />
-                        </Poster>
-                    </Link>
+                        </Link>
+                    </Poster>
+
                 ))}
             </PosterContainer>
         </>

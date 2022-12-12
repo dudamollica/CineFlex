@@ -4,7 +4,7 @@ export default function Footer(props) {
     const { img, title, date, hour } = props
 
     return (
-        <FooterStyle>
+        <FooterStyle data-test="footer">
             <div><img src={img} /></div>
             <span>{title} <br />
                 {date ? <p>{date} - {hour}</p> : ""}

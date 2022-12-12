@@ -2,17 +2,23 @@ import React from "react"
 import styled from "styled-components"
 
 export default function Seat(props) {
-    const { id, isAvailable, name, seatsList, setSeatsList} = props
+    const { id, isAvailable, name,seatsList, setSeatsList, seatsNumbers, setSeatsNumbers} = props
     const [selected, setSelected] = React.useState(false)
 
-    function selectedSeat(seatID) {
+    function selectedSeat(seatID, seatName, seatSelected) {
         if (isAvailable) {
-            if (!selected) {
+            if (!seatSelected) {
                 setSelected(true)
                 const newList = [...seatsList, seatID]
                 setSeatsList(newList)
+                const newSeatsNumbers = [...seatsNumbers, seatName]
+                setSeatsNumbers(newSeatsNumbers)
             } else {
                 setSelected(false)
+                const newList = seatsList.filter((s)=>s!=seatID)
+                setSeatsList(newList)
+                const newSeatsNumbers = seatsNumbers.filter((s)=>s!=seatName)
+                setSeatsNumbers(newSeatsNumbers)
             }
         } else {
             alert("Esse assento não está disponível")
@@ -21,7 +27,12 @@ export default function Seat(props) {
     }
 
     return (
-        <SeatStyle isAvailable={isAvailable} onClick={()=>selectedSeat(id)} selected={selected}>
+        <SeatStyle
+            isAvailable={isAvailable}
+            onClick={() => selectedSeat(id, name, selected)}
+            selected={selected}
+            data-test="seat"
+            >
             {name}
         </SeatStyle>)
 }

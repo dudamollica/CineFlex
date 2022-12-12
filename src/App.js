@@ -4,9 +4,19 @@ import GlobalStyle from "./GlobalStyle";
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Sessions from "./components/SessionsPage"
 import Seats from "./components/SeatsPage"
-
+import Success from "./components/SuccessPage"
+import React from "react";
 
 function App() {
+  const [name, setName] = React.useState("")
+  const [cpf, setCpf] = React.useState("")
+  const [seatsList, setSeatsList] = React.useState("")
+  const [date, setDate] = React.useState([])
+  const [movie, setMovie] = React.useState([])
+  const [hour, setHour] = React.useState([])
+  const [seatsNumbers, setSeatsNumbers] = React.useState("")
+  // console.log(seatsNumbers)
+
   return (
     <>
       <BrowserRouter>
@@ -17,7 +27,23 @@ function App() {
         <Routes>
           <Route path="/" element={<MoviesList />} />
           <Route path="/sessoes/:movieID" element={<Sessions />} />
-          <Route path="/assentos/:sessionID" element={<Seats />} />
+          <Route path="/assentos/:sessionID" element={
+            <Seats
+              name={name} setName={setName}
+              cpf={cpf} setCpf={setCpf}
+              seatsList={seatsList} setSeatsList={setSeatsList}
+              date={date} setDate={setDate}
+              movie={movie} setMovie={setMovie}
+              hour={hour} setHour={setHour} 
+              seatsNumbers={seatsNumbers} setSeatsNumbers={setSeatsNumbers} />} />
+          <Route path="/sucesso" element={
+            <Success
+              name={name}
+              cpf={cpf}
+              seatsNumbers={seatsNumbers}
+              date={date}
+              movie={movie}
+              hour={hour} />} />
         </Routes>
 
       </BrowserRouter>

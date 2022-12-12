@@ -6,21 +6,18 @@ import Seat from "./Seat"
 import Footer from "./Footer"
 import Form from "./Form"
 
-export default function Seats() {
+export default function Seats(props) {
+    const {name, setName, cpf, setCpf, seatsList, setSeatsList, date, setDate, movie, setMovie, hour, setHour, seatsNumbers, setSeatsNumbers}=props
     const [seatsMovie, setSeatsMovie] = React.useState([])
-    const [seatsSession, setSeatsSession] = React.useState([])
-    const [movie, setMovie] = React.useState([])
-    const [data, setData] = React.useState([])
     const { sessionID } = useParams()
-    const [seatsList, setSeatsList] = React.useState([])
 
     useEffect(() => {
         const URL = `https://mock-api.driven.com.br/api/v8/cineflex/showtimes/${sessionID}/seats`
         const promise = axios.get(URL)
         promise.then(res => setSeatsMovie(res.data.seats))
         promise.then(res => setMovie(res.data.movie))
-        promise.then(res => setSeatsSession(res.data.day))
-        promise.then(res => setData(res.data))
+        promise.then(res => setDate(res.data.day.date))
+        promise.then(res => setHour(res.data.name))
     }, [])
 
     return (
@@ -29,7 +26,7 @@ export default function Seats() {
 
             <SeatsContainer>
                 {seatsMovie.map((s) => <Seat key={s.id} id={s.id} isAvailable={s.isAvailable} name={s.name}
-                    seatsList={seatsList} setSeatsList={setSeatsList} />)}
+                    seatsList={seatsList} setSeatsList={setSeatsList} seatsNumbers={seatsNumbers} setSeatsNumbers={setSeatsNumbers}/>)}
             </SeatsContainer>
 
             <ColorKeys>
@@ -38,9 +35,9 @@ export default function Seats() {
                 <div><ColorKey background="#FBE192" border="#F7C52B" />Indisponível</div>
             </ColorKeys>
 
-            <Form seatsList={seatsList}/>
+            <Form name={name} setName={setName} cpf={cpf} setCpf={setCpf} seatsList={seatsList}/>
 
-            <Footer img={movie.posterURL} title={movie.title} date={seatsSession.date} hour={data.name} />
+            <Footer img={movie.posterURL} title={movie.title} date={date} hour={hour} />
         </SeatsPageStyle>
     )
 }
